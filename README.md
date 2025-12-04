@@ -1,208 +1,181 @@
-🚁 Drone Delivery DBMS
-Full-Stack Drone Delivery Tracking & Management Platform
+# 🚁 **Drone Delivery DBMS**
+### *Full-Stack Drone Delivery Tracking & Management Platform*
 
+---
 
+## 📌 **Overview**
 
-
-
-
-📌 Overview
-
-The Drone Delivery DBMS is a full-stack logistics management system designed to handle real-time drone delivery operations.
+The **Drone Delivery DBMS** is a full-stack logistics management system designed to handle drone delivery operations.  
 It includes modules for managing:
 
-🛩️ Drones — fleet status, battery, max load
+* 🛩️ **Drones** — fleet status, battery, max load  
+* 👨‍✈️ **Operators** — certifications & contact details  
+* 📦 **Packages** — dimensions, priority, sender/receiver  
+* 🚚 **Deliveries** — assignment + status tracking  
+* 🏠 **Addresses** — sender/receiver lookup  
 
-👨‍✈️ Operators — certifications & contact details
+Built using **React + Vite** (frontend) and **Node.js + Express + PostgreSQL** (backend).
 
-📦 Packages — dimensions, priority, sender/receiver
+---
 
-🚚 Deliveries — assignment + live status tracking
+## 🧱 **Tech Stack**
 
-🏠 Addresses — sender/receiver lookup
+### **Frontend**
+* React 19  
+* React Router DOM  
+* Vite  
+* Tailwind CSS  
+* ESLint  
 
-Built using React + Vite (frontend) and Node.js + Express + PostgreSQL (backend), the system follows clean REST API patterns and modular architecture.
+### **Backend**
+* Node.js (ES Modules)  
+* Express 5  
+* PostgreSQL (`pg`)  
+* dotenv, cors  
 
-🧱 Tech Stack
-Frontend
+### **Database Tables**
+* drone  
+* operator  
+* package  
+* delivery  
+* address  
+* delivery_package (junction table)
 
-⚛️ React 19
+---
 
-🔀 React Router DOM
+## 📂 **Project Structure**
 
-⚡ Vite
+    DBMS/
+    │
+    ├── frontend/                     # React + Vite SPA
+    │   ├── src/
+    │   │   ├── components/
+    │   │   │   ├── Dashboard.jsx
+    │   │   │   ├── Drones.jsx
+    │   │   │   ├── Operators.jsx
+    │   │   │   ├── Deliveries.jsx
+    │   │   │   └── Packages.jsx
+    │   │   ├── App.jsx
+    │   │   └── main.jsx
+    │   ├── index.html
+    │   └── package.json
+    │
+    └── server/                       # Node.js backend
+        ├── server.js                 # API routes + Express config
+        ├── db.js                     # PostgreSQL Pool connection
+        ├── operations.js             # SQL logic for all modules
+        └── package.json
 
-🎨 Tailwind CSS
+---
 
-🔍 ESLint
+## 🚀 **Features**
 
-Backend
+### 🛩️ *Drone Module*
+* Add, edit, delete drones  
+* Update battery, capacity, status  
+* Track availability in real time  
 
-🟦 Node.js (ES Modules)
+### 👨‍✈️ *Operator Module*
+* Manage certified drone operators  
+* Update contact details  
 
-🚀 Express 5
+### 📦 *Package Module*
+* Register packages with dimensions, weight, priority  
+* Link sender/receiver addresses  
 
-🐘 PostgreSQL (pg library)
+### 🚚 *Delivery Module*
+* Assign drone + operator  
+* Update delivery status  
+* Auto-clean related delivery_package records  
 
-🔑 dotenv, cors
+### 🏠 *Address Module*
+* Centralized sender/receiver address list  
 
-Database
+### 📊 *Dashboard*
+* Drone, operator, package, delivery counts  
+* Status summaries  
+* Quick navigation cards  
 
-PostgreSQL with tables:
+---
 
-drone
+## 🛠️ **Installation & Setup**
 
-operator
+### **1️⃣ Backend Setup**
 
-package
+    cd server
+    npm install
+    node server.js
 
-delivery
+Create a `.env` file:
 
-address
+    DB_HOST=your-host
+    DB_PORT=5432
+    DB_NAME=your-db
+    DB_USER=your-user
+    DB_PASSWORD=your-password
+    PORT=5000
 
-delivery_package (junction table)
+---
 
-📂 Project Structure
-DBMS/
-│
-├── frontend/                     # React + Vite SPA
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Dashboard.jsx
-│   │   │   ├── Drones.jsx
-│   │   │   ├── Operators.jsx
-│   │   │   │── Deliveries.jsx
-│   │   │   └── Packages.jsx
-│   │   ├── App.jsx
-│   │   └── main.jsx
-│   ├── index.html
-│   └── package.json
-│
-└── server/                       # Node.js backend
-    ├── server.js                 # API routes + Express config
-    ├── db.js                     # PostgreSQL Pool connection
-    ├── operations.js             # All SQL queries + logic
-    └── package.json
+### **2️⃣ Frontend Setup**
 
-🚀 Features
-🛩️ Drone Module
+    cd frontend
+    npm install
+    npm run dev
 
-Add/edit/delete drones
-
-Update battery, capacity & status
-
-Track availability in real time
-
-👨‍✈️ Operator Module
-
-Manage certified drone operators
-
-Update personal/contact details
-
-📦 Package Module
-
-Register packages with weight, size, and priority
-
-Link sender/receiver addresses
-
-🚚 Delivery Module
-
-Assign drone + operator
-
-Update delivery status
-
-Automatic cascading delete for related entries
-
-🏠 Address Module
-
-Used in package creation
-
-Provides consistent address selection
-
-📊 Dashboard
-
-Total drones, operators, packages, deliveries
-
-Status distribution
-
-Quick navigation cards
-
-🛠️ Installation & Setup
-1️️⃣ Backend Setup
-cd server
-npm install
-node server.js
-
-
-Create a .env file:
-
-DB_HOST=your-host
-DB_PORT=5432
-DB_NAME=your-db
-DB_USER=your-user
-DB_PASSWORD=your-password
-PORT=5000
-
-2️⃣ Frontend Setup
-cd frontend
-npm install
-npm run dev
-
-
-Vite will show a URL like:
+Frontend URL:  
 👉 http://localhost:5173
 
-The frontend automatically fetches data from:
+Backend URL:  
 👉 http://localhost:5000
 
-🔌 API Endpoints (Simplified)
-Drones
-GET    /drones
-POST   /drones
-PUT    /drones/:id
-DELETE /drones/:id
+---
 
-Operators
-GET    /operators
-POST   /operators
-PUT    /operators/:id
-DELETE /operators/:id
+## 🔌 **API Endpoints**
 
-Packages
-GET    /packages
-POST   /packages
-PUT    /packages/:id
-DELETE /packages/:id
+### **Drones**
+    GET    /drones
+    POST   /drones
+    PUT    /drones/:id
+    DELETE /drones/:id
 
-Deliveries
-GET    /deliveries
-POST   /deliveries
-PUT    /deliveries/:id
-DELETE /deliveries/:id
+### **Operators**
+    GET    /operators
+    POST   /operators
+    PUT    /operators/:id
+    DELETE /operators/:id
 
-Addresses
-GET    /addresses
+### **Packages**
+    GET    /packages
+    POST   /packages
+    PUT    /packages/:id
+    DELETE /packages/:id
 
-🎯 Typical User Workflow
+### **Deliveries**
+    GET    /deliveries
+    POST   /deliveries
+    PUT    /deliveries/:id
+    DELETE /deliveries/:id
 
-View system overview in Dashboard
+### **Addresses**
+    GET    /addresses
 
-Add drones & operators
+---
 
-Register packages with priority
+## 🎯 **Typical Workflow**
+* View system overview in Dashboard  
+* Add drones & operators  
+* Register packages with details  
+* Assign deliveries  
+* Track delivery status  
 
-Assign deliveries
+---
 
-Track delivery status through the system
+## 📘 **Future Improvements**
+* JWT authentication  
+* Map integration (Google Maps API)  
+* Real-time drone telemetry  
+* Analytics dashboard  
+* Auto-assignment algorithm  
 
-📘 Future Improvements
-
-🔐 Admin login (JWT Authentication)
-
-🌍 Map integration (Google Maps API)
-
-📡 Real-time drone telemetry (WebSockets)
-
-📈 Analytics dashboard with charts
-
-🤖 Auto-assignment algorithm
+---
